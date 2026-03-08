@@ -1,5 +1,29 @@
 This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
 
+ReactSphere is an organization-join portal that lets people request membership to the GitHub organization via their GitHub username.
+
+## Environment Setup
+
+Create a `.env.local` file in the project root with the following variables:
+
+```bash
+GITHUB_TOKEN=ghp_xxxxxxxxxxxxxxxxxxxxxxxxxxxx
+ORG_NAME=ReactSphere
+```
+
+### Required GitHub Token Permissions
+
+The `GITHUB_TOKEN` must satisfy **both** of the following requirements:
+
+1. **The token owner must be an owner (admin) of the GitHub organization.**  
+   Regular members cannot send org invitations. Go to `https://github.com/orgs/<ORG_NAME>/people` and confirm the account is listed as *Owner*.
+
+2. **The token must have the `write:org` scope** (included in `admin:org`).  
+   Generate or update your token at <https://github.com/settings/tokens> and enable:
+   - **`admin:org`** → `write:org` (minimum required)
+
+If the token is missing either of these, the API returns `403 You must be an admin to create an invitation to an organization.`
+
 ## Getting Started
 
 First, run the development server:
